@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Nodejs Fetch youtube video data and make audio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "fluent-ffmpeg": "^2.1.0",
+    "request": "^2.75.0",
+    "ytdl-core": "^0.7.18"
+  }
+}
