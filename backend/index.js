@@ -1,10 +1,7 @@
 'use strict';
 
-const http    = require('http')
+const http          = require('http')
 const executeRoutes = require('./router').executeRoutes
-const baseUrl = 'https://www.youtube.com'
-
-let searchTerm = 'Suffocation Blues'
 
 let server = http.createServer((req, res) => {
   executeRoutes(req.method, req.url, req, res)

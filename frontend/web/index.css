@@ -1,0 +1,8 @@
+.audio-list {
+  list-style: none;
+}
+
+.audio {
+  margin-bottom: 20px;
+  cursor: pointer;
+}

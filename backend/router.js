@@ -19,7 +19,11 @@ function executeRoutes(method, route, req, res) {
   method = method.toUpperCase();
   route = url.parse(route).pathname;
 
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
   let rCb = routes[method][route];
+
   if(rCb) {
     try {
       rCb(req, res);
@@ -60,6 +64,8 @@ attachRoutes('GET', '/api/search', function(req, res) {
 attachRoutes('GET', '/api/music', function(req, res) {
   let ss = qs.parse(req.url.split('?')[1])
   console.log('getAudioMedia', ss.video_id);
+
+  console.log('here')
   Yt.getAudioMedia(ss.video_id).pipe(res)
 })
 
