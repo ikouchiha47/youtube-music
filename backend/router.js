@@ -32,17 +32,15 @@ function executeRoutes(method, route, req, res) {
 }
 
 function notFound(res) {
-  sendJSON({ error: { code: 404, message: 'NOT_FOUND' } })
+  sendJSON(res, { error: { code: 404, message: 'NOT_FOUND' } })
 }
 
 function internalError(res) {
-  sendJSON({ error: { code: 500, message: 'INTERNAL_SERVER_ERROR' } })
+  sendJSON(res, { error: { code: 500, message: 'INTERNAL_SERVER_ERROR' } })
 }
 
 function sendJSON(res, data) {
-  res.setHeader({
-    'Content-Type': 'application/json'
-  })
+  res.setHeader('Content-Type', 'application/json')
   res.write(JSON.stringify(data))
 }
 
@@ -53,7 +51,7 @@ attachRoutes('GET', '/api/search', function(req, res) {
   Yt.searchResults(ss.query, (err, data) => {
     if(err) internalError(res);
     else {
-      sendJSON({ data: data })
+      sendJSON(res, { data: data })
     }
     res.end()
   })
@@ -61,8 +59,8 @@ attachRoutes('GET', '/api/search', function(req, res) {
 
 attachRoutes('GET', '/api/music', function(req, res) {
   let ss = qs.parse(req.url.split('?')[1])
-  console.log('getAudioMedia', ss.videoUrl);
-  Yt.getAudioMedia(ss.videoUrl).pipe(res)
+  console.log('getAudioMedia', ss.video_id);
+  Yt.getAudioMedia(ss.video_id).pipe(res)
 })
 
 exports.executeRoutes = executeRoutes
