@@ -1,3 +1,53 @@
+html,body, div, ul {
+  margin: 0;
+  padding: 0;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.logo {
+  padding: 0 15px;
+}
+
+.navbar {
+  font-size: 30px;
+  background-color: #222428;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.search-container {
+  width: calc(100% - 150px);
+  text-align: right;
+  margin-right: 30px;
+}
+
+.search-container input[type="text"] {
+  width: 35%;
+  border-radius: 25px;
+  margin: 0;
+  border: 0;
+  height: 20px;
+}
+
+.player {
+  text-align: center;
+  margin: 10px 0;
+}
+
 .audio-list {
   list-style: none;
 }
@@ -5,4 +55,5 @@
 .audio {
   margin-bottom: 20px;
   cursor: pointer;
+  padding: 0 10px;
 }
