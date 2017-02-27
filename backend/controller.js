@@ -5,6 +5,7 @@ const cheerio = require('cheerio')
 const ytdl    = require('ytdl-core')
 const FFmpeg  = require('fluent-ffmpeg')
 
+const log  = require('./logger.js')
 const baseUrl = 'http://www.youtube.com'
 
 exports.searchResults = function(searchTerm, cb) {
@@ -13,7 +14,7 @@ exports.searchResults = function(searchTerm, cb) {
     url: `${baseUrl}/results`,
     qs: { search_query: searchTerm }
   }, (err, res, body) => {
-    console.log(err)
+    log(err)
 
     if(err) cb(err)
     else if(res.statusCode > 399) cb({ message: body, status: res.status })

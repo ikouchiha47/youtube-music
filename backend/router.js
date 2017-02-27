@@ -3,6 +3,7 @@
 const url = require('url')
 const qs  = require('querystring')
 const Yt  = require('./controller')
+const log = require('./logger.js')
 
 let routes = {
   GET: [],
@@ -20,7 +21,7 @@ function executeRoutes(method, route, req, res) {
   route = url.parse(route).pathname;
 
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'HEAD, GET, OPTIONS, POST');
 
   let rCb = routes[method][route];
 
@@ -36,10 +37,12 @@ function executeRoutes(method, route, req, res) {
 }
 
 function notFound(res) {
+  log("Not found: ", res)
   sendJSON(res, { error: { code: 404, message: 'NOT_FOUND' } })
 }
 
 function internalError(res) {
+  log("Errror: ", res)
   sendJSON(res, { error: { code: 500, message: 'INTERNAL_SERVER_ERROR' } })
 }
 
